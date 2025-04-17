@@ -35,7 +35,7 @@ uploaded_file = st.sidebar.file_uploader("📤 Upload an image", type=["jpg", "j
 
 if uploaded_file:
     image = Image.open(uploaded_file).convert("RGB")
-    image_np = np.array(image)
+    image_np = np.array(image).astype(np.float32)
     predictor.set_image(image_np)
 
     st.subheader("🖱️ Click a point on the image to segment")
