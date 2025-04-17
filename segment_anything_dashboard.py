@@ -35,8 +35,9 @@ uploaded_file = st.sidebar.file_uploader("📤 Upload an image", type=["jpg", "j
 
 if uploaded_file:
     image = Image.open(uploaded_file).convert("RGB")
-    image_np = np.array(image).astype(np.float32)
-    predictor.set_image(image_np)
+    image_uint8 = np.array(image).astype(np.uint8)
+    image_float32 = image_uint8.astype(np.float32)
+    predictor.set_image(image_float32)
 
     st.subheader("🖱️ Click a point on the image to segment")
     coords = streamlit_image_coordinates(image, key="click")
